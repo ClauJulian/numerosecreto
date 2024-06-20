@@ -1,15 +1,16 @@
 
+// Variables para el juego
 let numeroMaxPosible = 10;
 let numeroSecreto = Math.floor(Math.random()* numeroMaxPosible + 1);
 let numeroUsuario = 0;
 let numeroIntentos = 1;
 let intentos = 3;
 
+// Variables para mostrar en pantalla
 let resultado__juego = document.getElementById("resultado__juego");
 let resultado__mensaje = document.getElementById("resultado__mensaje");
 
-//console.log(numeroUsuario);
-
+// Juego
 while(numeroIntentos <= intentos){
     numeroUsuario = parseInt(prompt(`Me indicas un número del 1 al ${numeroMaxPosible}, por favor:`));
 
