@@ -17,10 +17,14 @@
         <div class="container__contenido">
             <img src="./img/robot.png" alt="Robot" class="container__imagen-robot" />
             <div class="container__informaciones">
-                <img src="./img/trophy.png" alt="Icono de trofeo" />
-                 <div class="container__texto">
-                    <h1><span class="container__texto-azul" id="resultado__juego"></span></h1>
-                    <h2 id="resultado__mensaje"></h2>
+                <div class="container__texto">
+                    <h1></h1>
+                    <p class="texto__parrafo"></p>
+                </div>
+                <input type="number" id="intentoUsuario" min="1" max="10" class="container__input">
+                 <div class="chute container__botones">
+                    <button onclick="intentarNumero();" class="container__boton">Intentar</button>
+                    <button onclick="reiniciarJuego();" id="botonJuegoNuevo" class="container__boton" disabled>Juego Nuevo</button>
                 </div>
             </div>
         </div>
@@ -28,3 +32,20 @@
     <script src="app.js"></script>
 </body>
 </html>
+
+<!-- <div class="container">
+    <div class="container__contenido">
+        <div class="container__informaciones">
+            <div class="container__texto">
+                <h1></h1>
+                <p class="texto__parrafo"></p>
+            </div>
+            <input type="number" id="valorUsuario" min="1" max="10" class="container__input">
+            <div class="chute container__botones">
+                <button onclick="verificarIntento();" class="container__boton">Intentar</button>
+                <button onclick="reiniciarJuego();" class="container__boton" id="reiniciar" disabled>Nuevo juego</button>
+            </div>
+        </div>
+        <img src="./img/ia.png" alt="Una persona mirando a la izquierda" class="container__imagen-persona" />
+    </div>
+</div> -->

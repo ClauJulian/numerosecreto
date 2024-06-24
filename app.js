@@ -1,34 +1,59 @@
 
-// Variables para el juego
-let numeroMaxPosible = 10;
-let numeroSecreto = Math.floor(Math.random()* numeroMaxPosible + 1);
-let numeroUsuario = 0;
-let numeroIntentos = 1;
-let intentos = 3;
+let numeroSecreto = generarNumeroSecreto();
+let intentos= 1;
+// console.log( "numero secreto: " + numeroSecreto);
 
-// Variables para mostrar en pantalla
-let resultado__juego = document.getElementById("resultado__juego");
-let resultado__mensaje = document.getElementById("resultado__mensaje");
+editarTitulosPrincipales();
+generarNumeroSecreto();
 
-// Juego
-while(numeroIntentos <= intentos){
-    numeroUsuario = parseInt(prompt(`Me indicas un número del 1 al ${numeroMaxPosible}, por favor:`));
+// FUNCIONES UTILES GENERICAS
+function editarElementoHTML(elemento,mensaje){
+    return document.querySelector(elemento).innerHTML=mensaje;
+}
 
-    if (numeroUsuario == numeroSecreto) {
-        resultado__juego.innerHTML="Ganaste!";
-        resultado__mensaje.innerHTML=`Adivinaste el número secreto en ${numeroIntentos} ${numeroIntentos == 1? "intento": "intentos"}`;
-        break;
-        }else if(numeroUsuario > numeroSecreto){
-            
-            alert('El número secreto es menor...');
-            }else{
-                alert('El número secreto es mayor...');
-            }
-    numeroIntentos++;
-    if(numeroIntentos > intentos){
-        resultado__juego.innerHTML="Perdiste!";
-        resultado__mensaje.innerHTML=`Usaste tus ${intentos} intentos!`;
-    }    
+function limpiarCaja(){
+    return document.getElementById('intentoUsuario').value = "";
+}
+
+function editarTitulosPrincipales(){
+    editarElementoHTML("h1","El Número Secreto");
+    editarElementoHTML("p", "Elije un número del 1 al 10");    
+}
+
+
+// FUNCIONES DEL JUEGO
+function generarNumeroSecreto(){
+    return parseInt(Math.floor(Math.random()* 10 + 1));  
 };
 
-    
+function condicionesIniciales(){
+    editarTitulosPrincipales();
+    numeroSecreto = generarNumeroSecreto();
+    intentos = 1;
+    document.getElementById("botonJuegoNuevo").setAttribute('disabled', true);
+    console.log( "numero secreto: " + numeroSecreto);
+}
+
+
+function reiniciarJuego(){
+    condicionesIniciales();    
+    limpiarCaja();
+}
+
+function intentarNumero(){
+    let intentoUsuario = parseInt(document.getElementById('intentoUsuario').value); 
+    if(intentoUsuario == numeroSecreto){
+        editarElementoHTML('p',`Ganaste en ${intentos} ${intentos == 1 ? "intento" : "intentos"} !`);
+        document.getElementById("botonJuegoNuevo").removeAttribute("disabled");
+
+    } else {
+        if(intentoUsuario > numeroSecreto){
+            editarElementoHTML('p','El numero es menor');
+        }else{
+            editarElementoHTML('p','El numero es mayor');
+        }
+        intentos++;
+        limpiarCaja();
+    }
+    //console.log("numero usuario: " + intentoUsuario);    
+}
